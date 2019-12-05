@@ -7,15 +7,24 @@ const clientmodel = dbcontext.define('client', {
         primaryKey: true,
         autoIncrement: true
     },
-    clientname: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    clientId:{
+    clientgroupname:{
       type: Sequelize.STRING,
       allowNull: false,
     },
+    clientname: {
+      type: Sequelize.STRING,
+
+    },
+    clientId:{
+      type: Sequelize.STRING,
+    },
     address:{
+      type: Sequelize.STRING
+    },
+    servedby:{
+      type: Sequelize.STRING
+    },
+    source:{
       type: Sequelize.STRING
     },
     phone:{
@@ -23,6 +32,28 @@ const clientmodel = dbcontext.define('client', {
     },
     otherinfo:{
       type: Sequelize.STRING
+    },
+    studentname:{
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    nationality:{
+      type: Sequelize.STRING
+    },
+    passport:{
+      type: Sequelize.STRING
+    },
+    university:{
+      type: Sequelize.STRING
+    },
+    degree:{
+      type: Sequelize.STRING
+    },
+    major:{
+      type: Sequelize.STRING
+    },
+    packageamount:{
+      type: Sequelize.INTEGER
     }
   }, {
     // options

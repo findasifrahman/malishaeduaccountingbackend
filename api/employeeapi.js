@@ -5,7 +5,7 @@ var cors = require('cors');
 app.use(cors());
 var model = require('../models/employeemodels');
 
-app.get("/",validatetoken,function(req,res,next){
+app.get("/"/*,validatetoken*/,function(req,res,next){
     model.findAll().then(result => {
            res.json(result)
            //console.log(result)
@@ -23,7 +23,7 @@ app.get("/getbyid",function(req,res,next){
        }).catch(err  => {res.status(400).send(err);console.log(err)});   
 })
 
-app.post('/',validatetoken, function(req, res,next){
+app.post('/'/*,validatetoken*/, function(req, res,next){
     console.log("inside add");
     console.log(req.body);
     let { employeename,employeid,designation,roleId,joiningDate,salary,absentDeduction,catagory,otherinfo,
@@ -35,7 +35,7 @@ app.post('/',validatetoken, function(req, res,next){
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
 })
-app.put('/',validatetoken, function(req, res,next){
+app.put('/'/*,validatetoken*/, function(req, res,next){
     console.log("linside update");
     console.log(req.body.Id);
     console.log(req.body.employeid)
@@ -51,7 +51,7 @@ app.put('/',validatetoken, function(req, res,next){
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/',validatetoken, (req, res,next) => {
+app.delete('/',/*validatetoken,*/ (req, res,next) => {
     console.log("inside delete");
 
     model.destroy({

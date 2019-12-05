@@ -1,20 +1,19 @@
 const Sequelize = require('sequelize');
 const dbcontext = require('../dbcontext');
-const inventoryitem = dbcontext.define('inventoryitem', {
+const purpose = dbcontext.define('purpose', {
     // attributes
     id: {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    inventoryitemname: {
+    purpose: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    
   }, {
     // options
   }
 );
 
-module.exports = inventoryitem;
+module.exports = purpose;

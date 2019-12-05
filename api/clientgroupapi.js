@@ -3,7 +3,7 @@ var validatetoken = require('./login').validateTokenAdminAccounts;
 
 var cors = require('cors');
 app.use(cors());
-var model = require('../models/clientmodels');
+var model = require('../models/clientgroupmodels');
 
 app.get("/"/*,validatetoken*/,function(req,res,next){
     model.findAll().then(result => {
@@ -41,9 +41,9 @@ app.get("/getbyclient",function(req,res,next){
 app.post('/',/* validatetoken,*/function(req, res,next){
     console.log("inside add");
     console.log(req.body);
-    let { clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount} = req.body;
+    let { clientgroupname, companyname,address,phone,otherinfo} = req.body;
     model.create({
-        clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount
+        clientgroupname, companyname,address,phone,otherinfo
     }
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
@@ -53,15 +53,15 @@ app.put('/', function(req, res,next){
     console.log(req.body.Id);
     console.log(req.body);
 
-    let { id,clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount } = req.body;
+    let { id, clientgroupname, companyname,address,phone,otherinfo } = req.body;
       // Insert into table
       model.update({
-        clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount
+        clientgroupname, companyname,address,phone,otherinfo
       },{ where: { id: req.body.Id } })
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/'/*, validatetoken*/,(req, res,next) => {
+app.delete('/', /*validatetoken,*/(req, res,next) => {
     console.log("inside delete");
 
     model.destroy({

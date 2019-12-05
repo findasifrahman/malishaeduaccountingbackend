@@ -25,8 +25,9 @@ app.post('/', function(req, res,next){
               console.log("milse");
               rolemodels.findOne({where: {id: resa.roleId}
               }).then(roleval =>{
+                console.log("rolename",roleval.rolename)
                 const payload = { user: user,role: roleval.rolename };
-                const options = { expiresIn: '1h', issuer: 'localhost:8086' };
+                const options = { expiresIn: '1h', issuer: '103.218.25.96:8086' };
                 const secret = 'mytoken@asif';
                 const token = jwt.sign(payload, secret, options);
         
@@ -129,12 +130,12 @@ module.exports.validateTokenAdmin = (req, res, next) => {
       const token = req.headers.authorization.split(' ')[1]; // Bearer <token>
       const options = {
         expiresIn: '1h',
-        issuer: 'localhost:8086'
+        issuer: '103.218.25.96:8086'//'localhost:8086'
       };
       try {
         result = jwt.verify(token, 'mytoken@asif', options);
         console.log('validating');
-        console.log(result.role);
+        //console.log(result.role);
         req.decoded = result;
         // We call next to pass execution to the su
         next();

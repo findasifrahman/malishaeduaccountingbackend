@@ -4,7 +4,7 @@ var cors = require('cors');
 app.use(cors());
 var models = require('../models/incomesourcemodels');
 
-app.get("/",validatetoken,function(req,res,next){
+app.get("/",/*validatetoken,*/function(req,res,next){
     models.findAll().then(result => {
         res.json(result)
         //console.log(result)
@@ -22,7 +22,7 @@ app.get("/getbyid",function(req,res,next){
        })
        .catch(err  => {res.status(400).send(err);;console.log(err)});   
 })
-app.post('/',validatetoken, function(req, res,next){
+app.post('/',/*validatetoken,*/ function(req, res,next){
     console.log("inside add");
     console.log(req.body);
     let { incomesourcename } = req.body;
@@ -32,7 +32,7 @@ app.post('/',validatetoken, function(req, res,next){
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
 })
-app.put('/',validatetoken, function(req, res,next){
+app.put('/'/*,validatetoken*/, function(req, res,next){
     console.log("inside update");
     console.log(req.body.Id);
 
@@ -44,7 +44,7 @@ app.put('/',validatetoken, function(req, res,next){
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/',validatetoken, (req, res,next) => {
+app.delete('/',/*validatetoken,*/ (req, res,next) => {
     console.log("inside delete");
     /*productgroupmodel.destroy({
         where: { Id: req.query.id }         

@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
 const dbcontext = require('../dbcontext');
-const inventoryitem = dbcontext.define('inventoryitem', {
+const degree = dbcontext.define('degree', {
     // attributes
     id: {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    inventoryitemname: {
+    degree: {
       type: Sequelize.STRING,
-      allowNull: false,
+      allowNull: false
     },
     
   }, {
@@ -17,4 +17,4 @@ const inventoryitem = dbcontext.define('inventoryitem', {
   }
 );
 
-module.exports = inventoryitem;
+module.exports = degree;

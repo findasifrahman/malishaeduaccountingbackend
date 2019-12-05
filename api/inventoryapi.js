@@ -5,7 +5,7 @@ app.use(cors());
 var models = require('../models/inventorymodels');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-app.get("/",validatetoken,function(req,res,next){
+app.get("/"/*,validatetoken*/,function(req,res,next){
     models.findAll().then(result => {
         res.json(result)
         //console.log(result)
@@ -38,7 +38,21 @@ app.get("/getbydate",function(req,res,next){
            res.json(result)
     }).catch(err  => {res.status(400).send(err);;console.log(err)});   
 })
-app.post('/',validatetoken , function(req, res,next){
+
+app.get("/getbyname",function(req,res,next){
+    var name = req.query.name;
+    console.log("------------------------------", name)
+    models.findAll({
+        where: {
+            itemname: name
+        }
+     }).then(result => {
+           res.json(result)
+           //console.log(result)
+       })
+       .catch(err  => {res.status(400).send(err);;console.log(err)});    
+})
+app.post('/'/*,validatetoken*/ , function(req, res,next){
     console.log("inside inventory add");
     console.log(req.body);
     let { itemname,itemid,date,unitPrice,additionalPrice,quantity,totalPrice,otherinfo } = req.body;
@@ -48,7 +62,7 @@ app.post('/',validatetoken , function(req, res,next){
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
 })
-app.put('/',validatetoken, function(req, res,next){
+app.put('/'/*,validatetoken*/, function(req, res,next){
     console.log("inside update");
     console.log(req.body.Id);
 
@@ -60,7 +74,7 @@ app.put('/',validatetoken, function(req, res,next){
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/',validatetoken, (req, res,next) => {
+app.delete('/'/*,validatetoken*/, (req, res,next) => {
     console.log("inside delete");
 
     models.destroy({

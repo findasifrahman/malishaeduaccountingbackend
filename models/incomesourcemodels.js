@@ -8,7 +8,8 @@ const incomesource = dbcontext.define('incomesource', {
         autoIncrement: true
     },
     incomesourcename: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     
   }, {

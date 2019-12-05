@@ -5,7 +5,7 @@ app.use(cors());
 var models = require('../models/payrollmodels');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-app.get("/",validatetoken,function(req,res,next){
+app.get("/"/*,validatetoken*/,function(req,res,next){
     models.findAll().then(result => {
         res.json(result)
         //console.log(result)
@@ -38,7 +38,7 @@ app.get("/getbydate",function(req,res,next){
            res.json(result)
     }).catch(err  => {res.status(400).send(err);;console.log(err)});   
 })
-app.post('/',validatetoken , function(req, res,next){
+app.post('/'/*,validatetoken*/ , function(req, res,next){
     console.log("inside inventory add");
     console.log(req.body);
     let { employeename,employeeid,date,allocatedSalay,bonus,absentDays,lateDays,otherDeduction,SalaryPayable,additionalInfo } = req.body;
@@ -60,7 +60,7 @@ app.put('/',validatetoken, function(req, res,next){
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/',validatetoken, (req, res,next) => {
+app.delete('/'/*,validatetoken*/, (req, res,next) => {
     console.log("inside delete");
 
     models.destroy({

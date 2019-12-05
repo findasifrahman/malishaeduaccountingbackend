@@ -2,7 +2,7 @@ var app = require('express')();
 var validatetoken = require('./login').validateTokenAll;
 var cors = require('cors');
 app.use(cors());
-var models = require('../models/officialexpenditure');
+var models = require('../models/majormodels');
 
 app.get("/",/*validatetoken,*/function(req,res,next){
     models.findAll().then(result => {
@@ -22,12 +22,11 @@ app.get("/getbyid",function(req,res,next){
        })
        .catch(err  => {res.status(400).send(err);;console.log(err)});   
 })
-app.post('/'/*,validatetoken*/ , function(req, res,next){
+app.post('/',/*validatetoken,*/ function(req, res,next){
     console.log("inside add");
-    console.log(req.body);
-    let { officialexpendituretype } = req.body;
+    let { major } = req.body;
     models.create({
-        officialexpendituretype,
+        major,
     }
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
@@ -36,15 +35,15 @@ app.put('/'/*,validatetoken*/, function(req, res,next){
     console.log("inside update");
     console.log(req.body.Id);
 
-    let { id,officialexpendituretype } = req.body;
+    let { id,major } = req.body;
       // Insert into table
       models.update({
-        officialexpendituretype
+        major
       },{ where: { id: req.body.Id } })
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
 })
-app.delete('/'/*,validatetoken*/, (req, res,next) => {
+app.delete('/',/*validatetoken,*/ (req, res,next) => {
     console.log("inside delete");
     /*productgroupmodel.destroy({
         where: { Id: req.query.id }         

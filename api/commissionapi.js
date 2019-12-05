@@ -3,7 +3,7 @@ var validatetoken = require('./login').validateTokenAdminAccounts;
 
 var cors = require('cors');
 app.use(cors());
-var model = require('../models/clientmodels');
+var model = require('../models/commissionmodels');
 
 app.get("/"/*,validatetoken*/,function(req,res,next){
     model.findAll().then(result => {
@@ -23,14 +23,14 @@ app.get("/getbyid",function(req,res,next){
        }).catch(err  => {res.status(400).send(err);console.log(err)});   
 })
 app.get("/getbyclient",function(req,res,next){
-    console.log(req.query.id);
+    console.log(req.query.idclientName);
     model.findOne({
         where: {
-            clientId: req.query.id
+            agentname: req.query.idclientName
         }
      }).then(result => {
          if(result != null){
-            res.json("true")
+            res.json(result)
          }
          else{
             res.json("false")
@@ -41,9 +41,9 @@ app.get("/getbyclient",function(req,res,next){
 app.post('/',/* validatetoken,*/function(req, res,next){
     console.log("inside add");
     console.log(req.body);
-    let { clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount} = req.body;
+    let { agentname,enteredby,fromdate,todate,totalamount,dueamount,commission,additionalInfo} = req.body;
     model.create({
-        clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount
+        agentname,enteredby,fromdate,todate,totalamount,dueamount,commission,additionalInfo
     }
     ).then(result => res.status(200).send(result))
     .catch(err => {res.status(400).send(err);console.log(err);});
@@ -53,10 +53,10 @@ app.put('/', function(req, res,next){
     console.log(req.body.Id);
     console.log(req.body);
 
-    let { id,clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount } = req.body;
+    let { id,agentname,enteredby,fromdate,todate,totalamount,dueamount,commission,additionalInfo } = req.body;
       // Insert into table
       model.update({
-        clientgroupname,clientname,clientId,address,servedby,source,phone,otherinfo,studentname,nationality,passport,university,degree,major, packageamount
+        agentname,enteredby,fromdate,todate,totalamount,dueamount,commission,additionalInfo,
       },{ where: { id: req.body.Id } })
         .then(result => res.status(200).send(result))
         .catch(err => {res.status(400).send(err);console.log(err)});
