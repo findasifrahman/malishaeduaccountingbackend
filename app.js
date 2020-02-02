@@ -19,7 +19,7 @@ var majorapi = require('./api/majorapi')
 var universityapi = require('./api/universityapi')
 var nationalityapi = require('./api/nationalityapi')
 var degreeapi = require('./api/degreeapi')
-
+var salesreturnapi = require('./api/salesreturnapi')
 var inventoryapi = require('./api/inventoryapi')
 var payrollapi = require('./api/payrollapi');
 var salesvoucherapi = require('./api/salesvoucherapi');
@@ -55,6 +55,7 @@ app.use('/api/payroll', payrollapi);
 app.use('/api/clientgroup', clientgroupapi);
 app.use('/api/client',clientapi);
 app.use('/api/salesVoucher',salesvoucherapi)
+app.use('/api/salesreturn',salesreturnapi)
 app.use('/api/purchase', purchaseapi)
 app.use('/api/officecost',officecostapi)
 app.use('/api/purpose',puposeapi);

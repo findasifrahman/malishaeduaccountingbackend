@@ -11,12 +11,8 @@ const clientmodel = dbcontext.define('client', {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    clientname: {
-      type: Sequelize.STRING,
-
-    },
-    clientId:{
-      type: Sequelize.STRING,
+    date: {
+      type: Sequelize.DATE
     },
     address:{
       type: Sequelize.STRING
@@ -52,8 +48,12 @@ const clientmodel = dbcontext.define('client', {
     major:{
       type: Sequelize.STRING
     },
-    packageamount:{
+    packageAmount:{
       type: Sequelize.INTEGER
+    },
+    unit:{
+      type:Sequelize.STRING
+
     }
   }, {
     // options

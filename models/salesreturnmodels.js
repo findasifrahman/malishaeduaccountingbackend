@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize');
 const dbcontext = require('../dbcontext');
-const salesVoucher = dbcontext.define('salesVoucher', {
+const salesreturnmodel = dbcontext.define('salesreturn', {
     // attributes
     id: {
         type:Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    voucherid: {
+    returnid: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -28,13 +28,7 @@ const salesVoucher = dbcontext.define('salesVoucher', {
     date: {
         type: Sequelize.DATE
     },
-    incomeType: {
-        type: Sequelize.STRING
-    },
-    packageAmount: {
-        type: Sequelize.INTEGER
-    },
-    paidAmount: {
+    returnAmount: {
         type: Sequelize.INTEGER
     },
     prevdues: {
@@ -51,4 +45,5 @@ const salesVoucher = dbcontext.define('salesVoucher', {
   }
 );
 
-module.exports = salesVoucher;
+
+module.exports = salesreturnmodel;
